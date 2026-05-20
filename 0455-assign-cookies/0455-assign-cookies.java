@@ -17,7 +17,7 @@ class Solution {
                   j++;
             }
             else {
-                i++;
+                return res;
             }
         }
         return res;
