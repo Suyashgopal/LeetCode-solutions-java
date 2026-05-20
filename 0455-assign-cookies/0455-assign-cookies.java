@@ -13,8 +13,11 @@ class Solution {
                 i++;
                 j++;    }
 
-            else{
+            else if (g[i]>s[j]){
                   j++;
+            }
+            else {
+                i++;
             }
         }
         return res;
