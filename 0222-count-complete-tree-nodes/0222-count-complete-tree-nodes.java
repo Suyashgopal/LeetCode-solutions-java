@@ -15,30 +15,27 @@
  */
 class Solution {
     public int countNodes(TreeNode root) {
-        
-                Queue<TreeNode> q= new LinkedList<>();
-                ArrayList<TreeNode> al= new ArrayList<>();
-
         if(root==null){return 0;}
-
-        q.offer(root);
-        while(true){
-            TreeNode node= q.poll();
-            al.add(node);
-             if(node.left==null){
-                break;
-            }
-            else{
-                q.add(node.left);
-            }
-            if(node.right==null){
-                break;
-            }
-            else{
-                q.add(node.right);
-            }
-
+ 
+       
+          return countNodes(root.left)+ countNodes(root.right)+1; 
+    }  
+    int lh(TreeNode root){
+        int count=0;
+        while(root!= null){
+            root= root.left;
+            count++;
         }
-        return al.size()+ q.size();
+        return count;
+        
+    }
+    int rh(TreeNode root){
+        int count=0;
+        while(root!= null){
+            root= root.right;
+            count++;
+        }
+        return count;
+
     }
 }
