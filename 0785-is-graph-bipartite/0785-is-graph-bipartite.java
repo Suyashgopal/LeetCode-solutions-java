@@ -11,10 +11,10 @@ class Solution {
 
         int[] colour= new int[row];
         Arrays.fill(colour, -1);
-        Queue<Integer> q= new LinkedList<>();
+
         for(int i=0;i<row;i++){
             if(colour[i]==-1){
-                boolean res= bfs(i,q,mat, colour);
+                boolean res= dfs(i,-1,mat, colour);
                 if(!res){return false;}
             }
         }
@@ -23,22 +23,27 @@ return true;
 
     
     }
- boolean bfs(int st, Queue<Integer> q,int[][] mat,int[] colour){
-    q.add(st);
-    colour[st]=0;
-    while(!q.isEmpty()){
-        int curr= q.poll();
-        for(int k: mat[curr]){
-            if(colour[k]==-1){
-                q.add(k);
-                colour[k]= 1- colour[curr];
-            }
-            else if(colour[k]== colour[curr]){
-                return false;
-            }
+ boolean dfs(int st, int prevc,int[][] mat,int[] colour){
+    if(prevc==-1){
+     colour[st]=0;
+
+    }
+    else{
+        colour[st]= 1-prevc;
+    }
+    for(int k: mat[st]){
+        if(colour[k]==-1){
+           if(!dfs(k,colour[st], mat, colour)){
+            return false;
+           }
+        }
+        else if(colour[k]== colour[st]){
+            return false;
         }
     }
-    return true;
+
+
+return true;
  }
 
 }
