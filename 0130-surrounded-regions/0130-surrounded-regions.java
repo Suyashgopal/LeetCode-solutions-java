@@ -15,65 +15,60 @@ class Solution {
         int row= mat.length;
         int col= mat[0].length;
         boolean[][] visit= new boolean[row][col];
-        Queue<pair> q= new LinkedList<>();
-        ArrayList<ArrayList<pair>> convert= new ArrayList<>();
-        for(int i=0;i< row;i++){
+        for(int i=0;i<row;i++){
+            if(mat[i][0]=='O' && !visit[i][0]){
+                visit[i][0]= true;
+                dfs(i,0,mat,visit);
+            }
+            if(mat[i][col-1]=='O' &&!visit[i][col-1]){
+                visit[i][col-1]= true;
+                dfs(i,col-1,mat,visit);
+            }
+        }
+        for(int j=0;j<col;j++){
+            if(mat[0][j]=='O' &&!visit[0][j]){
+               visit[0][j]= true;
+               dfs(0,j, mat, visit);
+            }
+            if(mat[row-1][j]=='O' && !visit[row-1][j]){
+                visit[row-1][j]= true;
+                dfs(row-1,j,mat,visit);
+            }
+        }
+
+        for(int i=0;i<row;i++){
             for(int j=0;j<col;j++){
-                if(mat[i][j]=='O' && !visit[i][j]){
-                    visit[i][j]= true;
-                    bfs(i, j, q,mat, visit, convert);
-
+                if(mat[i][j]=='O'&& !visit[i][j]){
+                    mat[i][j]= 'X';
                 }
             }
         }
-
-        for(ArrayList<pair> li: convert){
-            for(pair curr: li){
-                int i= curr.i;
-                int j= curr.j;
-                if(mat[i][j]=='O'){
-                    mat[i][j]='X';
-                }
-            }
-        }
+        
 
     }
 
-    void bfs(int si ,int sj,Queue<pair> q,char[][] mat, boolean[][] visit, ArrayList<ArrayList<pair>> convert){
-        ArrayList<pair> li= new ArrayList<>();
-        int row= mat.length;
+    void dfs(int i ,int j, char[][] mat, boolean[][] visit){
+         int row= mat.length;
         int col= mat[0].length;
-        visit[si][sj]= true;
-        li.add(new pair(si,sj));
-        boolean edgeflag= false;
-        q.offer( new pair(si, sj));
-        while(!q.isEmpty()){
-            pair curr= q.poll();
-            int i= curr.i;
-            int j= curr.j;
-            visit[i][j]= true;
-            li.add(new pair(i,j));
-            for(int delrow=-1;delrow<=1; delrow++){
-                for(int delcol=-1;delcol<=1;delcol++){
-                    if(Math.abs(delrow)+ Math.abs(delcol)!=1){continue;}
-                    int nr=i+ delrow;
-                    int nc= j+ delcol;
-                    if(nr<0 || nr>=row || nc<0 || nc>=col){
-                        edgeflag= true;
-                    }
-                    if(nr>=0 && nr<row && nc>=0 && nc<col && mat[nr][nc]=='O' && !visit[nr][nc]){
-                        visit[nr][nc]= true;
-                        q.offer(new pair(nr, nc));
-                    }
-
+        visit[i][j]= true;
+        for(int deli=-1; deli<=1; deli++ ){
+            for(int delj=-1;delj<=1; delj++){
+                if(Math.abs(deli)+Math.abs(delj)!=1){continue;}
+                int ni= i+ deli;
+                int nj= j+ delj;
+                if(ni>=0 && ni< row && nj>=0 && nj<col && mat[ni][nj]=='O'&& !visit[ni][nj]){
+                    visit[ni][nj]= true;
+                    dfs(ni,nj,mat, visit);
 
                 }
+
+
             }
         }
-        if(!edgeflag){
-            convert.add(li);
-        }
+
+
     }
+
 
 
 
