@@ -1,75 +1,85 @@
-class tuple {
+class tuple{
     int node;
     int price;
     int stops;
+    tuple(int price, int node, int stops){
+        
+        this.price= price;
+        this.node= node;
+        this.stops=stops;
 
-    tuple(int price, int node, int stops) {
-        this.price = price;
-        this.node = node;
-        this.stops = stops;
+    }}
+    class pair{
+        int node;
+        int price;
+        pair(int node, int price){
+        this.node= node;
+        this.price= price;
     }
-}
-
-class pair {
-    int node;
-    int price;
-
-    pair(int node, int price) {
-        this.node = node;
-        this.price = price;
     }
-}
+   
+
+    
+
+
+
+
 
 
 class Solution {
     public int findCheapestPrice(int n, int[][] mat, int src, int dest, int k) {
-
         ArrayList<ArrayList<pair>> adj = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
-            adj.add(new ArrayList<>());
+        for(int i=0;i<n;i++){
+            adj.add(new ArrayList<pair>());
+        }
+        for(int i=0;i<mat.length;i++){
+            adj.get(mat[i][0]).add(new pair(mat[i][1], mat[i][2]));
         }
 
-        for (int[] x : mat) {
-            adj.get(x[0]).add(new pair(x[1], x[2]));
-        }
-
-
-        int[] dist = new int[n];
+        int[] dist= new int[n];
         Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
+        dist[src]=0;
+        
+        Queue<tuple> pq= new LinkedList<>( );
+        pq.add(new tuple(0, src, 0));
 
-
-        Queue<tuple> q = new LinkedList<>();
-        q.add(new tuple(0, src, 0));
-
-
-        while (!q.isEmpty()) {
-
-            tuple curr = q.poll();
-
-            int node = curr.node;
+        while(!pq.isEmpty()){
+            tuple curr= pq.poll();
+            int node= curr.node;
+            int stops= curr.stops;
             int price = curr.price;
-            int stops = curr.stops;
-
-
-            if (stops > k) continue;
-
-
-            for (pair a : adj.get(node)) {
-
-                int newPrice = price + a.price;
-
-                if (newPrice < dist[a.node] && stops <= k) {
-
-                    dist[a.node] = newPrice;
-                    q.add(new tuple(newPrice, a.node, stops + 1));
-
-                }
+            if(stops>k){
+                continue;
             }
+            for(pair a: adj.get(node)){
+               int newprice= a.price+price;
+                 
+                if(newprice<dist[a.node] && stops<=k){
+                    dist[a.node]= newprice;
+                    pq.add(new tuple( newprice, a.node,stops+1));
+                }
+
+            }
+
+
         }
 
+        if(dist[dest]==Integer.MAX_VALUE){
+            return -1;
+        }
+        return dist[dest];
 
-        return dist[dest] == Integer.MAX_VALUE ? -1 : dist[dest];
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
