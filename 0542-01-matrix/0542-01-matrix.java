@@ -1,67 +1,60 @@
 class tuple{
-    int i;
-    int j;
     int dist;
-    tuple(int i, int j, int dist){
-        this.i= i;
-        this.j= j;
-        this.dist= dist;
+    int r;
+    int c;
+    tuple(int dist, int r, int c){
+        this.dist=  dist;
+        this.r= r;
+        this.c= c;
 
     }
 }
+
 
 
 class Solution {
     public int[][] updateMatrix(int[][] mat) {
-        int row = mat.length;
+        int row= mat.length;
         int col= mat[0].length;
-
-        boolean[][] visit= new boolean[row][col];
+        // using bfs
         Queue<tuple> q= new LinkedList<>();
-        int[][] res= new int[row][col];
-       for(int i=0;i<row;i++){
-        for(int j=0;j<col;j++){
-            if(mat[i][j]==0){
-                visit[i][j]= true;
-                q.offer(new tuple(i,j,0));
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(mat[i][j]==0){
+                    q.add(new tuple(0, i,j));
+                }
+
             }
         }
-       }
-       bfs(visit, q, res, mat);
 
-   return res;
-     
-    }
-    void bfs( boolean[][] visit, Queue<tuple> q, int[][] res, int[][] mat){
-           int row = mat.length;
-        int col= mat[0].length;
+        int[][] dist= new int [row][col];
+         for(int[] a: dist){
+            Arrays.fill(a, Integer.MAX_VALUE);
+         }
 
         while(!q.isEmpty()){
             tuple curr= q.poll();
-            int i= curr.i;
-            int j= curr.j;
-            int dist= curr.dist;
-            visit[i][j]= true;
-            res[i][j]= dist;
-            
-            for(int delrow= -1; delrow<=1;delrow++){
-                for(int delcol=-1; delcol<=1; delcol++){
-                    if(Math.abs(delrow)+ Math.abs(delcol)!=1){continue;}
-                    int nr= i+delrow;
-                    int nc= j+delcol;
-                    if(nr>=0 && nr<row && nc>=0 && nc<col && !visit[nr][nc]){
-                        visit[nr][nc]= true;
-                        q.offer(new tuple(nr, nc, dist+1));
-                    
+            int d= curr.dist;
+            int r= curr.r;
+            int c= curr.c;
+            if(d>= dist[r][c]){continue;}
+            dist[r][c]= d;
+            for(int dr=-1; dr<=1;dr++){
+                for(int dc=-1; dc<=1; dc++){
+                    if(Math.abs(dr)+Math.abs(dc)!=1){continue;}
+                    int nr= r+dr;
+                    int nc= c+dc;
+                    if(nr>=0 && nr<row && nc>=0 && nc< col && mat[nr][nc]==1 && dist[nr][nc]> d+1){
+                        q.add(new tuple(d+1, nr, nc));
                     }
-
                 }
             }
 
-
-
-
         }
-    }
 
+   return dist;
+        
+    }
 }
+
+
