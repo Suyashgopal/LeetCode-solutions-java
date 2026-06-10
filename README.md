@@ -2,7 +2,7 @@
 
 Java solutions to LeetCode problems, organized by topic. Each entry links to its solution directory.
 
-**Language:** Java &nbsp;|&nbsp; **Total Solved:** 130
+
 
 ---
 
