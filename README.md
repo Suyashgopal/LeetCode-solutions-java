@@ -295,16 +295,20 @@ Java solutions to LeetCode problems, organized by topic. Each entry links to its
 |  |
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+| [1462-course-schedule-iv](https://github.com/Suyashgopal/suyashdsa/tree/master/1462-course-schedule-iv) |
 ## Breadth-First Search
 |  |
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+| [1462-course-schedule-iv](https://github.com/Suyashgopal/suyashdsa/tree/master/1462-course-schedule-iv) |
 ## Graph Theory
 |  |
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+| [1462-course-schedule-iv](https://github.com/Suyashgopal/suyashdsa/tree/master/1462-course-schedule-iv) |
 ## Topological Sort
 |  |
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+| [1462-course-schedule-iv](https://github.com/Suyashgopal/suyashdsa/tree/master/1462-course-schedule-iv) |
 <!---LeetCode Topics End-->
