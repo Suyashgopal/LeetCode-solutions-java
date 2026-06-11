@@ -288,3 +288,23 @@ Java solutions to LeetCode problems, organized by topic. Each entry links to its
 | 1148 | [Article Views I](./1148-article-views-i) |
 | 1729 | [Find Followers Count](./1729-find-followers-count) |
 | 1757 | [Recyclable and Low Fat Products](./1757-recyclable-and-low-fat-products) |
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Depth-First Search
+|  |
+| ------- |
+| [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+## Breadth-First Search
+|  |
+| ------- |
+| [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+## Graph Theory
+|  |
+| ------- |
+| [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+## Topological Sort
+|  |
+| ------- |
+| [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
+<!---LeetCode Topics End-->
