@@ -296,6 +296,7 @@ Java solutions to LeetCode problems, organized by topic. Each entry links to its
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
 | [0743-network-delay-time](https://github.com/Suyashgopal/suyashdsa/tree/master/0743-network-delay-time) |
+| [0947-most-stones-removed-with-same-row-or-column](https://github.com/Suyashgopal/suyashdsa/tree/master/0947-most-stones-removed-with-same-row-or-column) |
 | [1462-course-schedule-iv](https://github.com/Suyashgopal/suyashdsa/tree/master/1462-course-schedule-iv) |
 ## Breadth-First Search
 |  |
@@ -308,6 +309,7 @@ Java solutions to LeetCode problems, organized by topic. Each entry links to its
 | ------- |
 | [0310-minimum-height-trees](https://github.com/Suyashgopal/suyashdsa/tree/master/0310-minimum-height-trees) |
 | [0743-network-delay-time](https://github.com/Suyashgopal/suyashdsa/tree/master/0743-network-delay-time) |
+| [0947-most-stones-removed-with-same-row-or-column](https://github.com/Suyashgopal/suyashdsa/tree/master/0947-most-stones-removed-with-same-row-or-column) |
 | [1462-course-schedule-iv](https://github.com/Suyashgopal/suyashdsa/tree/master/1462-course-schedule-iv) |
 ## Topological Sort
 |  |
@@ -322,4 +324,12 @@ Java solutions to LeetCode problems, organized by topic. Each entry links to its
 |  |
 | ------- |
 | [0743-network-delay-time](https://github.com/Suyashgopal/suyashdsa/tree/master/0743-network-delay-time) |
+## Hash Table
+|  |
+| ------- |
+| [0947-most-stones-removed-with-same-row-or-column](https://github.com/Suyashgopal/suyashdsa/tree/master/0947-most-stones-removed-with-same-row-or-column) |
+## Union-Find
+|  |
+| ------- |
+| [0947-most-stones-removed-with-same-row-or-column](https://github.com/Suyashgopal/suyashdsa/tree/master/0947-most-stones-removed-with-same-row-or-column) |
 <!---LeetCode Topics End-->
