@@ -1,19 +1,15 @@
 class Solution {
     public int fib(int n) {
-
-   int[] dp= new int[n+1];
-   Arrays.fill(dp, -1);
-   return fib(n, dp);
-
-
-
-    }
-   int fib(int n, int[] dp){
         if(n<=1){return n;}
-        
-        if(dp[n]!=-1){return dp[n];}
-        dp[n]= fib(n-1,dp) + fib(n-2, dp);
-        return dp[n];
-    }
+        int p2=0;
+        int p1=1;
+        for(int i=0;i<n-1;i++){
+            int res= p2+p1;
+            p2= p1;
+            p1= res;
 
+        }
+        return p1;
+        
+    }
 }
