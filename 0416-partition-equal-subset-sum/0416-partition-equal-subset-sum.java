@@ -1,43 +1,46 @@
 class Solution {
     public boolean canPartition(int[] nums) {
         int n= nums.length;
-        int s2= 0;
+        int t= 0;
         for(int i= 0;i<n ;i++){
-        s2= s2 + nums[i];
+        t= t + nums[i];
         }
-        int [][] dp= new int [n][s2+1];
+        if(t%2!=0){
+            return false;
+
+        }
+          t=t/2;
+        int [][] dp= new int [n][t+1];
 
         for(int[] k: dp){
             Arrays.fill(k, -1);
         }
 
-   return fun(n-1, 0,s2, nums, dp );   }
+   return fun(n-1,t, nums, dp );   }
 
-    boolean fun(int idx , int s1 , int s2, int [] arr, int[][] dp){
+    boolean fun(int idx , int t, int [] arr, int[][] dp){
 
         if(idx == 0){
-            if(s1==s2){
-                return true;
-            }
+            
+            return arr[0]==t;
+        }
+        if(dp[idx][t]!= -1){
+            if(dp[idx][t]==1){return true;}
             return false;
         }
-        if(dp[idx][s1]!= -1){
-            if(dp[idx][s1]==1){return true;}
-            return false;
-        }
 
 
 
-        
-       
-        boolean take = fun( idx-1, s1+ arr[idx], s2-arr[idx], arr, dp);
-        boolean miss= fun( idx-1, s1, s2, arr, dp);
+        boolean take = false;
+       if(arr[idx]<= t){
+         take = fun( idx-1, t- arr[idx], arr, dp);}
+        boolean miss= fun( idx-1, t, arr, dp);
     
         if (take || miss){
-            dp[idx][s1]= 1;
+            dp[idx][t]= 1;
         }
         else {
-            dp[idx][s1]= 0;
+            dp[idx][t]= 0;
         }
         return take || miss;
     }
