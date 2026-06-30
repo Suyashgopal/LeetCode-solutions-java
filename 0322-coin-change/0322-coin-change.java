@@ -1,39 +1,35 @@
 class Solution {
-    public int coinChange(int[] coins, int amount) {
-        int n= coins.length;
- int[][] dp = new int[n][amount+1];
-       for(int[] k: dp){
-        Arrays.fill(k, -1);
-       }
-        
-       int res=  fun(n-1, amount, coins, dp);
-      
-       if(res==(int)1e9){
-        return -1;
-       }
-       return res;
+    public int coinChange(int[] arr, int t) {
+        int n= arr.length;
+        int[][] dp= new int[n][t+1];
 
-        
+    for(int[] k: dp){
+        Arrays.fill(k, (int)1e9);
     }
+   
+   for(int i=0;i<=t;i++){
+    if(i%arr[0]==0){
+        dp[0][i]= i/arr[0];
+            }
+   }
 
-    int fun(int idx,int t, int[]arr, int[][] dp){
-   if(idx==0){
-     int div= t/arr[0];
-     t= t- div*arr[0];
-     if(t==0){
-        return div;
-     }
-     return (int)1e9;
+   for(int i=1;i<n;i++){
+    for(int tar=0;tar<=t;tar++){
+        int take = (int)1e9;
+        if(arr[i]<=tar){
+            take = 1+ dp[i][tar-arr[i]];
+        }
+        int nottake= dp[i-1][tar];
+        dp[i][tar]= Math.min(take, nottake);
+    }
    }
-   if(dp[idx][t]!= -1){
-    return dp[idx][t];
-   }
-   int take =(int)1e9;
-   if(arr[idx]<=t){
-     take= 1+ fun(idx, t-arr[idx], arr, dp);
-   }
-   int nottake= fun(idx-1, t, arr, dp);
-   dp[idx][t]= Math.min(take, nottake);
- return dp[idx][t];
+   if (dp[n-1][t]==1e9){return -1;}
+   return dp[n-1][t];
+
+        
+        
+
+
+        
     }
 }
