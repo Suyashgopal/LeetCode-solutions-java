@@ -2,37 +2,41 @@ class Solution {
     public int maxProfit(int[] arr) {
         int n= arr.length;
 
-        int[][][] dp= new int[n][2][2];
+        int[][][] dp= new int[n+1][2][3];
         for(int[][] k: dp){
             for(int [] l : k){
-                Arrays.fill(l, -1);
+                Arrays.fill(l,0);
             }
         }
-       
-        return fun(0, 1, arr, 0,dp);
-        
-    }
-    int fun(int id,int buy, int[] arr,int t, int[][][] dp ){
-        if(id==arr.length || t==2 ){
-         return 0;
-        }
-        if(dp[id][buy][t]!=-1){
-            return dp[id][buy][t];
-        }
+
+
+   for(int id= n-1; id>=0;id--){
+    for(int buy=0;buy<=1;buy++){
+        for(int t=0;t<2;t++){
+
+
+
         int pbuy=0;
         int psell=0;
         if(buy==1 ){
-            
-            int a= -arr[id]+ fun(id+1, 0,arr,t,dp);
-          pbuy= Math.max( a, fun(id+1, 1,arr, t,dp)    ) ; 
+          int a= -arr[id]+ dp[id+1][0][t];
+          pbuy= Math.max( a,  dp[id+1][1][t]    ) ; 
         }
 
-        if(buy==0 && t<2){
-            int b=arr[id]+ fun(id+1, 1,arr,t+1, dp);
-          psell= Math.max( b, fun(id+1, 0,arr, t,dp)) ; 
+        if(buy==0 && t<2){  
+        int b=arr[id]+  dp[id+1][1][t+1] ;
+        psell= Math.max( b,dp[id+1][0][t] ) ; 
         }
-        dp[id][buy][t]= Math.max(pbuy, psell);
-        return dp[id][buy][t];
+         dp[id][buy][t]= Math.max(pbuy, psell);
 
+        }
     }
+   }
+
+       
+        return dp[0][1][0];
+        
+    }
+   
+    
 }
