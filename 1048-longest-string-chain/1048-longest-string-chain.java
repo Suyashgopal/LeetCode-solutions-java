@@ -15,7 +15,7 @@ class Solution {
                 int k= s1.length();
                 int l= s2.length();
             int diff= l-k;
-                if(diff==1 && issubseq(k-1,l-1,s1,s2)){
+                if(diff==1 && issubseq(s1,s2)){
                     dp[i]= Math.max(dp[i], dp[j]+1);
                     max= Math.max(max, dp[i]);
                 }
@@ -24,18 +24,21 @@ class Solution {
         return max;
 
     }
-    boolean issubseq(int i, int j, String s1, String s2){
-        if(i<0 || j<0){
-            if(i<0 && j<0){return true;}
-            if(i<0){return true;}
-            return false;
+    boolean issubseq( String s1, String s2){
+        int i=0;
+        int j=0;
+        while(i<s1.length() && j<s2.length()){
+            if(s1.charAt(i)==s2.charAt(j)){
+                i++;
+                j++;
+            }
+            else{
+  j++;
+            }
+          
+
         }
-        boolean pick = false;
-        if(s1.charAt(i)== s2.charAt(j)){
-        pick= issubseq(i-1, j-1, s1,s2);
-        }
-        boolean skip= issubseq(i, j-1, s1,s2);
-        return skip|| pick;
+        return i==s1.length();
         
     }
 }
