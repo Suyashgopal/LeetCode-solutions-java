@@ -1,23 +1,39 @@
 class Solution {
     public int lengthOfLIS(int[] arr) {
         int n= arr.length;
-           int max=1;
-        int dp[]= new int[n];
-        Arrays.fill(dp,1);
-        for(int i=1; i<n;i++){
-            for(int j=0;j<i;j++){
-                if(arr[j]<arr[i]){
-                    dp[i]= Math.max(dp[j]+1, dp[i]);
-                }
+        ArrayList<Integer> al= new ArrayList<>();
+        al.add(arr[0]);
+        for(int i=1;i<n;i++){
+            if(arr[i]>al.get(al.size()-1)){
+                al.add(arr[i]);
             }
-                        max= Math.max(max, dp[i]);
+            else{
+                int id= binaryput(arr[i], arr, al);
+                al.set(id, arr[i]);
+            }
+        }
+        return al.size();
+        
+    }
+    int binaryput(int target, int[] arr, ArrayList<Integer> al){
+        int low=0;
+        int high= al.size()-1;
+
+        while(low<high){
+            int mid= low+ (high-low)/2;
+            if(al.get(mid)== target){
+                return mid;
+            }
+           else if(al.get(mid)< target){
+                low= mid+1;
+            }
+            else{
+                high= mid;
+            }
+        
 
         }
+        return low;
 
-      
-
-        return max;
-
-        
     }
 }
