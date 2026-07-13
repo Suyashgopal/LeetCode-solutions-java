@@ -1,74 +1,48 @@
 class Solution {
     public boolean isValidSudoku(char[][] mat) {
-        boolean ans=true;
+        HashMap<Integer, Set<Character>> rowmap= new HashMap<>();
+        HashMap<Integer, Set<Character>> colmap= new HashMap<>();
+         HashMap<Integer, Set<Character>> boxmap= new HashMap<>();
         for(int i=0;i<9;i++){
-           if(!check(i, mat)){
-            return false;
-           }
-
+            rowmap.put(i, new HashSet<Character>());
+            colmap.put(i, new HashSet<Character>());
+            boxmap.put(i, new HashSet<Character>());
         }
-    
 
         for(int i=0;i<9;i++){
             for(int j=0;j<9;j++){
-                if(i%3==0 &&( j%3==0)){
-                    
-
-                    if(!boxcheck(i,j, mat)){
-                        return false;
-                    }
-                    
-                }
-            }
-        }
-        return true;
-
-
-        
-        
-    }
-    boolean check(int a, char[][] mat){
-        HashSet<Character> row= new HashSet<>();
-      HashSet<Character> col= new HashSet<>();
-      for(int i=0;i<9;i++){
-        if(mat[a][i]!='.' ){
-             if(row.contains(mat[a][i])){
-            return false;}
-             row.add(mat[a][i]);
-        }
-
-          if(mat[i][a]!='.' ){
-             if(col.contains(mat[i][a])){
-            return false;}
-             col.add(mat[i][a]);
-        }
-       
-
-        }
-      
-       
-      
-      return true;
-
-    }
-    boolean boxcheck(int a, int b, char[][] mat){
-        HashSet<Character> set= new HashSet<>();
-
-        for(int i=a;i<a+3;i++ ){
-            for(int j=b; j<b+3; j++){
 
                 if(mat[i][j]!='.'){
-                     if(set.contains(mat[i][j])){
-                    return false;
-                }
-                set.add(mat[i][j]);
-                }
-               
+        
+                    
 
-            }
+                    if(rowmap.get(i).contains(mat[i][j])){
+                        return false;
+                    }
+                    if(colmap.get(j).contains(mat[i][j])){
+                        return false;
+                    }
+
+                    int boxid= (i/3) *3 + (j/3);
+                  
+                    
+                    if(boxmap.get(boxid).contains(mat[i][j])){
+                        return false;
+                    }
+
+                    rowmap.get(i).add(mat[i][j]);
+                   colmap.get(j).add(mat[i][j]);
+                  boxmap.get(boxid).add(mat[i][j]);
 
 
-        }
-        return true;
+                    
+}
+
+}}
+   return true;
+
+        
+
+        
     }
 }
