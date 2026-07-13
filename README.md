@@ -332,4 +332,8 @@ Java solutions to LeetCode problems, organized by topic. Each entry links to its
 |  |
 | ------- |
 | [0947-most-stones-removed-with-same-row-or-column](https://github.com/Suyashgopal/suyashdsa/tree/master/0947-most-stones-removed-with-same-row-or-column) |
+## Math
+|  |
+| ------- |
+| [0007-reverse-integer](https://github.com/Suyashgopal/suyashdsa/tree/master/0007-reverse-integer) |
 <!---LeetCode Topics End-->
