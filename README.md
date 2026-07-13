@@ -336,4 +336,5 @@ Java solutions to LeetCode problems, organized by topic. Each entry links to its
 |  |
 | ------- |
 | [0007-reverse-integer](https://github.com/Suyashgopal/suyashdsa/tree/master/0007-reverse-integer) |
+| [0172-factorial-trailing-zeroes](https://github.com/Suyashgopal/suyashdsa/tree/master/0172-factorial-trailing-zeroes) |
 <!---LeetCode Topics End-->
