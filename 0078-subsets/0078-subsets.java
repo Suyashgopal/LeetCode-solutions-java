@@ -1,25 +1,25 @@
 class Solution {
-    public List<List<Integer>> subsets(int[] nums) {
-        //using bitmanipulation
-        int n= nums.length;
-        List<List<Integer>> outer=  new ArrayList<>(); 
+    public List<List<Integer>> subsets(int[] arr) {
+        List<List<Integer>> outer= new ArrayList<>();
+        List<Integer> al= new ArrayList<>();
 
+        fun(0, arr, al, outer);
+        return outer;
 
-        int last= (1<<n)-1;
-        for( int i=0;i<=last;i++){
-                  ArrayList<Integer> li= new ArrayList<>();
-
-            for(int j=0;j<n;j++){
-                if((i& (1<<j))!=0){
-                    li.add(nums[j]);
-                }
-            }
-            outer.add(li);
-           
-
-        }
-
-    return outer;
+      
         
+    }
+    void fun(int id, int[] arr, List<Integer> al,List<List<Integer>> outer  ){
+        if(id== arr.length){
+            outer.add(new ArrayList<>(al));
+            return;
+        }
+        //pick
+        al.add(arr[id]);
+        fun(id+1, arr, al, outer);
+
+        //not pick
+        al.remove(al.size()-1);
+        fun(id+1, arr, al, outer);
     }
 }
