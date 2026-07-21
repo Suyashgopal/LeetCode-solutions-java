@@ -1,34 +1,38 @@
 class Solution {
     public List<List<Integer>> combinationSum2(int[] arr, int t) {
+        List<List<Integer>> outer= new ArrayList<>();
+        List<Integer> al= new ArrayList<>();
         Arrays.sort(arr);
+        fun(0, arr,t,al,outer);
+        return outer;
 
-List<List<Integer>> outer  = new  ArrayList<>();
- ArrayList<Integer> li = new  ArrayList<>();
- fun(arr,t,0,outer,li); 
-return outer;
         
     }
-
-void fun(int[] arr, int t, int idx,List<List<Integer>> outer , ArrayList<Integer> li ){
-    if(idx==arr.length){
+    void fun(int id, int [] arr, int t,List<Integer> al, List<List<Integer>> outer){
         if(t==0){
-            outer.add(new ArrayList<>(li));
-
+            outer.add(new ArrayList<>(al));
+            return;
         }
-        return;}
-    if(arr[idx]<=t){
-        li.add(arr[idx]);
-        fun(arr, t-arr[idx],idx+1,outer,li);
-        li.remove(li.size()-1);
+        if(id>= arr.length || t<0){
+            return ;
+        }
+
+
+
+
+        //pick
+
+        al.add(arr[id]);
+        fun(id+1, arr, t-arr[id],al, outer);
+
+        //remove last ones
+        int x= al.get(al.size()-1);
+
+        al.remove(al.size()-1);
+
+        while(id<arr.length && arr[id]==x){
+            id++;
+        }
+        fun(id, arr,t, al, outer);
     }
-    
-        int next= idx;
-        while(next <arr.length && arr[next]== arr[idx]){
-            next++;
-        }
-    fun(arr,t, next,outer,li);
-}
-
-
-
 }
