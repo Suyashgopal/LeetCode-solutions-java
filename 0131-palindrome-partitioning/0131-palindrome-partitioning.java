@@ -1,46 +1,47 @@
 class Solution {
     public List<List<String>> partition(String s) {
+        
         List<List<String>> outer= new ArrayList<>();
-        ArrayList<String> al= new ArrayList<>();
+        List<String> al= new ArrayList<>();
+
+        fun(0, s,al, outer);
+        return outer;
 
 
-            fun(0,s,al,outer);
-            return outer;
 
+        
         
     }
 
-    void fun(int idx ,String s,ArrayList<String> al,List<List<String>> outer){
-
-        if(idx==s.length()){
-            outer.add(new ArrayList<>(al));
-            return;
-        }
-        for(int i=idx;i<s.length();i++){
-            if(ispal(s,idx,i)){
-                al.add(s.substring(idx,i+1));
-                    fun(i+1,s,al,outer);
-                   al.remove(al.size()-1);
-             
-                 
-            }
-         
-          
-          
-        }
-
+    void fun(int id,String s ,  List<String> al, List<List<String>> outer ){
+    int n= s.length();
+    if(id==n){
+        outer.add(new ArrayList<>(al));
+        return ;
     }
 
-    boolean ispal(String s, int st,int end){
-       
-       
-        while(st<end){
-            if(s.charAt(st)!= s.charAt(end)){
-                return false;
-            }st++;
-            end--;
+    for(int len=1; id+len<=n; len++){
+        int st = id;
+        int end= id+len;
+        
+         //picked
+        String k= s.substring(id, end);
+        StringBuilder sb = new StringBuilder(k);
+        String rev= sb.reverse().toString();
+        if(rev.equals(k)){
+            al.add(k);
+              fun(end,s,al, outer );
+                al.remove(al.size()-1);
         }
-return true;}
+
+      
+
+        
+        
+    }
 
 
+
+
+        }
 }
