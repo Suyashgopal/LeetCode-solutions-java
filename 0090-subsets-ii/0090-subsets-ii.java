@@ -1,28 +1,38 @@
 class Solution {
-    public List<List<Integer>> subsetsWithDup(int[] nums) {
-        Arrays.sort(nums);
-           List<List<Integer>> li= new ArrayList<>();
-        ArrayList<Integer> al= new ArrayList<>();
-        func(li,al,nums,0);
-        return li;
+    public List<List<Integer>> subsetsWithDup(int[] arr) {
+        List<List<Integer>> outer= new ArrayList<>();
+        List<Integer> al= new ArrayList<>();
+        Arrays.sort(arr);
         
+        fun(0, arr, al, outer);
+
+        return outer;
+
+
         
     }
-    void func(List<List<Integer>> li, ArrayList<Integer> al,int[] nums,int idx){
-        if(idx== nums.length){
-            li.add(new ArrayList<>(al));
+    void fun(int id, int[] arr, List<Integer> al, List<List<Integer>> outer){
+        int n= arr.length;
+        if(id>=n){
+            outer.add(new ArrayList<>(al));
             return;
         }
-        al.add(nums[idx]);
-     func(li,al,nums,idx+1);
-      
-    
+
+        //pick
+
+        al.add(arr[id]);
+        fun(id+1, arr, al, outer);
+        //notpick
+
+        int x= al.get(al.size()-1);
+
         al.remove(al.size()-1);
-        int next= idx+1;
-        while(next<nums.length && nums[next]==nums[idx]){
-            next++;
+
+        while(id<n && arr[id]==x){
+            id++;
         }
-          func(li,al,nums,next); 
-     
- }
+        fun(id, arr, al, outer);
+
+
+    }
 }
