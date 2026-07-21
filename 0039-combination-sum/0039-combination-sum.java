@@ -1,41 +1,34 @@
 class Solution {
     public List<List<Integer>> combinationSum(int[] arr, int t) {
-        Arrays.sort(arr);
-
-        List<List<Integer>> outer = new ArrayList<>();
-        ArrayList<Integer> li = new ArrayList<>();
-        fun(arr,t,0,li, outer);
+        List<List<Integer>> outer= new ArrayList<>();
+        List<Integer> al= new ArrayList<>();
+        fun(0,arr, t, al, outer);
         return outer;
-
-
-
 
 
         
     }
-    void fun(int[] arr, int t,int idx, ArrayList<Integer> al, List<List<Integer>> outer){
-        if(idx==arr.length){
-            if(t==0){
-            outer.add(new ArrayList<>(al));  }
-            return;
+    void fun(int id, int[] arr, int t,  List<Integer> al,  List<List<Integer>> outer ){
+
+
+           if(t==0){
+            outer.add(new ArrayList<>(al));
+            return ;
+          }
+
+        if(id>= arr.length|| t<0){
+        return ;
         }
 
-            if(arr[idx]<= t){
-          al.add(arr[idx]);
-          fun(arr,t-arr[idx],idx,al, outer);
-            al.remove(al.size()-1);
+        //pick 
+        al.add(arr[id]);
+        fun(id, arr, t-arr[id], al, outer);
 
-            }
-           
+        //not pick
+        al.remove(al.size()-1);
+        fun(id+1, arr,t, al, outer);
 
-
-        
-
-        
-      
-        fun(arr,t,idx+1,al, outer);
-
-
+     
 
     }
 }
