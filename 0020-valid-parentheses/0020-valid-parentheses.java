@@ -1,35 +1,50 @@
 class Solution {
     public boolean isValid(String s) {
-        char[] c= s.toCharArray();
-        Stack<Character> st= new Stack();
-        for(int i=0;i<c.length;i++){
-            if(c[i]=='('|| c[i]=='{'||c[i]=='['){
-                st.push(c[i]);
-            }
-             if(c[i]=='}'|| c[i]==')'||c[i]==']'){
-                if(st.isEmpty()){
-                    return false;
-                }
-               if(c[i]=='}' && st.peek()!= '{'){
-                return false;
-               }
-             else  if(c[i]==']'&& st.peek()!= '['){
-                return false;
-               }
-              else   if(c[i]==')'&& st.peek()!= '('){
-                return false;
-               }
+       char [] arr= s.toCharArray();
+       int n= arr.length;
+       Stack<Character> st= new Stack<>();
 
-               st.pop();
+       for(int i=0;i<n;i++){
 
-            }
-          
+        char c= arr[i];
+
+        if(c=='['  || c=='{'  || c=='('  ){
+        st.push(c);
         }
-          if(!st.isEmpty()){
-                return false;
-            }
 
-            return true;
+        else{
+             if(st.isEmpty()){return false;}
+
+             if(c==']'  ) {
+                if(st.peek()== '[')
+                { st.pop();}
+              else { return false;}
+              
+             }
+             if(c=='}'  ) {
+                if(st.peek()== '{')
+                { st.pop();}
+                else { return false;}
+              
+             }
+              if(c==')'  ) {
+                if(st.peek()== '(')
+                { st.pop();}
+                else { return false;}
+              
+             }
+        }
+
+
+
+
+
+       }
+
+       if(st.isEmpty()){
+        return true;
+       }
+       return false;
         
     }
 }
