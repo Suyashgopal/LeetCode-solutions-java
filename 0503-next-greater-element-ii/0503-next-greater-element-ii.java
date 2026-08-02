@@ -1,37 +1,44 @@
 class Solution {
-    public int[] nextGreaterElements(int[] nums) {
+    public int[] nextGreaterElements(int[] arr) {
+    //2 nge to left and nge to right
+    int n  = arr.length;
 
-        // first traversal
-        Stack<Integer> st= new Stack<>();
-        int n= nums.length;
+    int[] res= new int[n];
+    Stack<Integer> st= new Stack<>();
 
-       for(int i= n-1;i>=0;i--){
-        while(!st.isEmpty() && st.peek()<=nums[i]){
+    
+
+     int  i=n-1;
+
+      while(i>=0){
+        while(!st.isEmpty() && st.peek()<=arr[i]){
             st.pop();
         }
-        st.push(nums[i]);
-       }
+        st.push(arr[i]);
+            i--;
 
-       int [] res= new int [n];
-       int i=n-1;
+    }
+     i=n-1;
+ 
        while(i>=0){
-        while(!st.isEmpty() && st.peek()<= nums[i]){
+        while(!st.isEmpty() && st.peek()<=arr[i]){
             st.pop();
         }
         if(st.isEmpty()){
             res[i]= -1;
-            st.push(nums[i]);
-            
+            st.push(arr[i]);
         }
-        else if (!st.isEmpty()&& st.peek()>nums[i]){
-            res[i]=st.peek();
-            st.push(nums[i]);
+        else{
+            res[i]= st.peek();
+            st.push(arr[i]);
         }
         i--;
 
+    }
 
-       }
-       return res;
-        
+
+return res;
+
+
     }
 }
