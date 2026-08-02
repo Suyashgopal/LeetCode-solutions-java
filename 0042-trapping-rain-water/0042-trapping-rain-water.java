@@ -1,40 +1,56 @@
 class Solution {
     public int trap(int[] arr) {
         int n= arr.length;
-        //nge to right
-        int[] right= new int[n];
+        Stack<Integer> st= new Stack<>();
         int[] left= new int[n];
-        int lg=-1;
+        int[] right= new int[n];
 
-       for(int i=n-1; i>=1;i--){
-        if(arr[i]<=lg){
-            left[i]= lg;
-        }
-        else{
-            left[i]=-1;
-            lg=arr[i];
-        }
-       } 
-       int rg=-1;
-       for(int i=0; i<n;i++){
-        if(arr[i]<=rg){
-            right[i]= rg;
-        }
-        else{
-            right[i]=-1;
-            rg=arr[i];
-        }
-       } 
-       int sum=0;
+        int i=0;
+        while(i<n){
+            while(!st.isEmpty() && st.peek()<=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                left[i]=-1;
+                st.push(arr[i]);
+            }
+            else{
+                left[i]= st.peek();
 
-       for(int i=0;i<n;i++){
-     if(left[i]==-1 || right[i]==-1){
-        continue;
-     }
-        int min= Math.min(left[i], right[i]);
-        sum= sum+ (min-arr[i]);
+            }
+            i++;
+        }
 
-       }   
-       return sum;    
+        st.clear();
+        i=n-1;
+
+        while(i>=0){
+            while(!st.isEmpty() && st.peek()<=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                right[i]=-1;
+                st.push(arr[i]);
+            }
+            else{
+                right[i]= st.peek();
+
+            }
+            i--;
+        }
+
+        int res=0;
+        for(i=0;i<n;i++){
+            if(left[i]==-1 || right[i]==-1){continue;}
+
+            int min= Math.min(left[i], right[i]);
+            res= res+ min-arr[i];
+        }
+return res;
+
+
+
+
+        
     }
 }
